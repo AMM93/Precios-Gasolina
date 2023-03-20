@@ -37,19 +37,6 @@ class scrap():
         
         return self.wdriver.find_element("xpath", url).click()
     
-    @property    
-    def click_element(self, url):
-        '''
-        Funcion para reutilizar la funcion de selenium para hacer click un elemento dentro de la pagina web.
-        Por tanto, clickea sobre un elemento y no esperamos nada de retorno
-
-        Parameters
-        ----------
-        url: string
-            xpath copiado del elemento de la página web que queremos encontrar
-        '''
-        #breath(1,1)
-        self.wdriver.find_element("xpath", url).click()
  
     def write_in_box(self, url, text):
         '''
@@ -82,4 +69,27 @@ class scrap():
         #breath(2,3)
         return webdriver.find_element("xpath", self).text
     
+    def pick_temporalidad(self, freq_temporal):
+        '''
+        Funcion para decidir con qué frecuencia sacamos los datos.
+
+        Parameters
+        ----------
+        freq_temporal: string
+            Opciones: Diaria, Semanal, Mensual, Anual
+        '''
+        print(freq_temporal)
+        if freq_temporal == 'Diaria':
+            i = 0
+        if freq_temporal == 'Semanal':
+            i = 1
+        if freq_temporal == 'Mensual':
+            i = 2
+        if freq_temporal == 'Anual':
+            i = 3
+        else:
+            print("Frecuencia añadida incorrecta, por favor, revisa lo introducido")
+               
+        print(i)            
+        return self.click_element(f"/html/body/form/div[3]/div[3]/div/div[1]/fieldset[1]/div[2]/select/option[{i}]")
 
