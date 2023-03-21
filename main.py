@@ -15,6 +15,19 @@ webdriver.pick_temporalidad('Mensual')
 ### Insertar Tiempo Inicial y Final ###
 webdriver.insert_dates('01/01/2023', '20/03/2023')
 
+## Insertar la busqueda con detalles
+webdriver.variables_to_plot(['Gasolinera', 'Madrid', 'Madrid', 'Madrid', 'Madrid', 'Alcampo', 'Gasolina 98 E5', 'G'])
+
+# Aceptar la busqueda
+webdriver.click_element('/html/body/form/div[3]/div[3]/div/div[1]/fieldset[2]/div/div[3]/fieldset/div[2]/input')
+
+#Desgargar el Excel
+webdriver.click_element('/html/body/form/div[3]/div[3]/div/div[1]/fieldset[2]/div[1]/div[1]/div/table/tbody/tr[2]/td[5]/input[2]')
+
+
+
+
+
 
 
 
