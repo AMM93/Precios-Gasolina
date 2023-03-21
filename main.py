@@ -9,19 +9,11 @@ from scrap_functions import *
 url = "https://sedeaplicaciones.minetur.gob.es/shpcarburantes/"
 webdriver = scrap(url)
 
-
-# Qué queremos sacar y cómo
-temporalidad = ['Diaria', 'Semanal', 'Mensual', 'Anual']
-
-
-# Consultamos histórico de precios
-
-tipo_temporal = '/html/body/form/div[3]/div[3]/div/div[1]/fieldset[1]/div[2]/select'
-
+### Insertar Temporalidad ###
 webdriver.pick_temporalidad('Mensual')
 
-
-
+### Insertar Tiempo Inicial y Final ###
+webdriver.insert_dates('01/01/2023', '20/03/2023')
 
 
 

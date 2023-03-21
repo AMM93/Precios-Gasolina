@@ -16,12 +16,8 @@ from selenium.webdriver.chrome.options import Options
 class scrap():
 
     def __init__(self,url, wdriver = None) -> None:
-        #options = Options()
-        #options.add_argument('--headless')
-        #options.add_argument('--disable-gpu')
-        #wdriver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options = options)
         self.wdriver = webdriver.Chrome(ChromeDriverManager().install())
-        self.wdriver.get(url)
+        return self.wdriver.get(url)
 
     
     def click_element(self, url):
@@ -36,6 +32,7 @@ class scrap():
         '''
         
         return self.wdriver.find_element("xpath", url).click()
+        
     
  
     def write_in_box(self, url, text):
@@ -47,9 +44,11 @@ class scrap():
         box: es un click_element() del objeto webdriver creado en este fichero
         text: lo que queramos que escriba en dicha box
         '''
-        #breath(1,1)
-        a = self.click_element(url)
-        a.send_keys(text)
+
+        date_button = self.wdriver.find_element("xpath", url)
+        date_button.click()
+        date_button.send_keys(text)
+        
         
     def get_text(self):
         '''
@@ -76,20 +75,39 @@ class scrap():
         Parameters
         ----------
         freq_temporal: string
-            Opciones: Diaria, Semanal, Mensual, Anual
+            Options: Diaria, Semanal, Mensual, Anual
         '''
-        print(freq_temporal)
+        
         if freq_temporal == 'Diaria':
-            i = 0
-        if freq_temporal == 'Semanal':
             i = 1
-        if freq_temporal == 'Mensual':
+        if freq_temporal == 'Semanal':
             i = 2
-        if freq_temporal == 'Anual':
+        if freq_temporal == 'Mensual':
             i = 3
-        else:
-            print("Frecuencia añadida incorrecta, por favor, revisa lo introducido")
-               
-        print(i)            
-        return self.click_element(f"/html/body/form/div[3]/div[3]/div/div[1]/fieldset[1]/div[2]/select/option[{i}]")
+        if freq_temporal == 'Anual':
+            i = 4
+    
+        self.click_element(f"/html/body/form/div[3]/div[3]/div/div[1]/fieldset[1]/div[2]/select/option[{i}]")
+    
+        
+    def insert_dates(self, start_date, end_date):    
+        '''
+        Function to insert starting and ending date
+        
+        Parameters
+        ----------
+        start: starting date with format dd/mm/YYYY
+        end: ending date with format dd/mm/YYYY
+        
+        '''    
+        url_start = '/html/body/form/div[3]/div[3]/div/div[1]/fieldset[1]/div[3]/input'
+        self.write_in_box(url_start, start_date)
+        
+        sleep(2)
+        url_end = '/html/body/form/div[3]/div[3]/div/div[1]/fieldset[1]/div[4]/input'
+        self.write_in_box(url_end, end_date)
+        
+        
+        
+                        
 
