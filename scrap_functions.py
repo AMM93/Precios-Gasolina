@@ -106,8 +106,49 @@ class scrap():
         sleep(2)
         url_end = '/html/body/form/div[3]/div[3]/div/div[1]/fieldset[1]/div[4]/input'
         self.write_in_box(url_end, end_date)
-        
-        
-        
-                        
+    
+    
+    def pick_serie(self, serie):
+        '''
+        Funcion para decidir con qué frecuencia sacamos los datos.
 
+        Parameters
+        ----------
+        freq_temporal: string
+            Options: Diaria, Semanal, Mensual, Anual
+        '''
+        
+        if serie == 'CA':
+            i = 1
+        if serie == 'Provincia':
+            i = 2
+        if serie == 'Municipio':
+            i = 3
+        if serie == 'Gasolinera':
+            i = 4
+        self.click_element(f"/html/body/form/div[3]/div[3]/div/div[1]/fieldset[2]/div/div[3]/fieldset/div[1]/div[1]/select/option[{i}]")
+         
+        
+    #def variables_to_plot(tipo_serie, ca, provincia, municipio, localidad, gasolinera, carburante, grafica):
+    def variables_to_plot(self, list_vbles):
+        '''
+        Funcion para ir insertando cada una de las variables que solicita la pagina del ministerio.
+        
+        Parameters
+        ----------
+        list_vbles = serie, ca, provincia, municipio, localidad, gasolinera, carburante, grafica
+        
+        serie: CA, Provincia, Municipio o Gasolinera
+        CA: Comunidad Autónoma
+        Gráfica: Gráfico de barras o de líneas
+        '''
+        for i in range(1,9):
+            url = f"/html/body/form/div[3]/div[3]/div/div[1]/fieldset[2]/div/div[3]/fieldset/div[1]/div[{i}]/select"
+            self.write_in_box(url, list_vbles[i-1])
+
+        
+        
+        
+        
+        
+        
