@@ -1,5 +1,6 @@
 # https://sedeaplicaciones.minetur.gob.es/shpcarburantes/
 
+
 # Import libraries
 import pandas as pd
 import numpy as np
