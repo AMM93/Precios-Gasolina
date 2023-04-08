@@ -8,6 +8,11 @@ from datetime import date
 from scrap_functions import *
 import shutil
 
+
+from datetime import date, timedelta
+yesterday = date.today() - timedelta(days=1)
+last_data = yesterday.strftime('%d/%m/%Y')
+
 #### Select year to download ###
 year = '2023'
 url = "https://sedeaplicaciones.minetur.gob.es/shpcarburantes/"
@@ -18,7 +23,7 @@ webdriver.pick_temporalidad('Mensual')
 
 ### Insertar Tiempo Inicial y Final ###
 #webdriver.insert_dates('01/01/' + year, '31/12/' + year)
-webdriver.insert_dates('01/01/' + year, '27/03/' + year)
+webdriver.insert_dates('01/01/' + year, last_data)
 
 ## Insertar la busqueda con detalles
 webdriver.variables_to_plot(['Gasolinera', 'Madrid', 'Madrid', 'Madrid', 'Madrid', 'Alcampo', 'Gasolina 98 E5', 'G'])
