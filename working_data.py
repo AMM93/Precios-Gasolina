@@ -18,6 +18,24 @@ df.sort_values(by='Fecha', inplace = True)
 fig = px.line(df, x = 'Fecha', y = 'Precio', title = 'Gasolina 98 E5 Madrid 2020 - 2023')
 fig.show()
 
+#########--------------------------#########
+## Data Engineer
+
+def create_features(df):
+    '''
+    Crearemos features de time series basados en el index para estudiar luego su comportamiento
+    '''
+    
+    df = df.set_index('Fecha')
+    df['month'] = df.index.month
+    df['year'] = df.index.year
+    
+    return df
+
+df_study = create_features(df)
+fig = px.box(df_study, x= "month", y="Precio")
+fig.show()
+
 # Determinar si es un random walk o no
 # Vamos a determinar si es un random walk o no. Recordar que es un proceso donde hay mismas posibilidades tanto de ir hacia arriba o hacia abajo por un número aleatorio.
 # Step 1: Ver si existe una tendencia. En este caso, parece que puede haberlo ya que año a año ha ido incrementando.
@@ -126,11 +144,15 @@ pred_df = test.copy()
 TRAIN_LEN = len(train)
 HORIZON = len(test)
 WINDOW = 1
-
+    
 
 pred_mean = rolling_forecast(df_diff, TRAIN_LEN, HORIZON, WINDOW, 'mean')
 pred_last_value = rolling_forecast(df_diff, TRAIN_LEN, HORIZON, WINDOW, 'last')
 pred_MA = rolling_forecast(df_diff, TRAIN_LEN, HORIZON, WINDOW, 'MA')
+
+
+pred_MA
+
 
 pred_df['pred_mean'] = pred_mean
 pred_df['pred_last_value'] = pred_last_value
