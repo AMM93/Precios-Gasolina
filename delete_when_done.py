@@ -104,62 +104,32 @@ test = df_diff[int(0.7*len(df_diff)):]
 
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-def rolling_forecast(df: pd.DataFrame, train_len: int, horizon: int, window: int, method: str) -> list:
+def rolling_forecast(df: pd.DataFrame, train_len: int, horizon: int, window: int) -> list:
     
     total_len = train_len + horizon
+
+    pred_MA = []
     
-    if method == 'mean':
-        pred_mean = []
+    for i in range(train_len, total_len, window):
+        model = SARIMAX(df[:i], order=(0,0,1))
+        res = model.fit(disp=False)
+        predictions = res.get_prediction(0, i + window - 1)
+        oos_pred = predictions.predicted_mean.iloc[-window:]
+        pred_MA.extend(oos_pred)
         
-        for i in range(train_len, total_len, window):
-            mean = np.mean(df[:i].values)
-            pred_mean.extend(mean for _ in range(window))
-
-        return pred_mean
-
-    elif method == 'last':
-        pred_last_value = []
-        
-        for i in range(train_len, total_len, window):
-            last_value = df[:i].iloc[-1].values[0]
-            pred_last_value.extend(last_value for _ in range(window))
-            
-        return pred_last_value
-    
-    elif method == 'MA':
-        pred_MA = []
-        
-        for i in range(train_len, total_len, window):
-            model = SARIMAX(df[:i], order=(0,0,1))
-            res = model.fit(disp=False)
-            predictions = res.get_prediction(0, i + window - 1)
-            oos_pred = predictions.predicted_mean.iloc[-window:]
-            pred_MA.extend(oos_pred)
-            
-        return pred_MA
-
-from pandas.tseries.offsets import DateOffset
-pred_date=[df_diff.index[-1]+ DateOffset(months=x)for x in range(0,24)]
+    return res, pred_MA
 
 
 pred_df = test.copy()
-
 TRAIN_LEN = len(train)
 HORIZON = len(test)
 WINDOW = 1
     
 
-pred_mean = rolling_forecast(df_diff, TRAIN_LEN, HORIZON, WINDOW, 'mean')
-pred_last_value = rolling_forecast(df_diff, TRAIN_LEN, HORIZON, WINDOW, 'last')
-pred_MA = rolling_forecast(df_diff, TRAIN_LEN, HORIZON, WINDOW, 'MA')
+res, pred_MA = rolling_forecast(df_diff, TRAIN_LEN, HORIZON, WINDOW)
 
-
-pred_MA
-
-
-pred_df['pred_mean'] = pred_mean
-pred_df['pred_last_value'] = pred_last_value
 pred_df['pred_MA'] = pred_MA
+
 
 
 ####----------------------###
@@ -177,18 +147,34 @@ trace1 =  go.Scatter(
     y = df_diff['diff_gasolina'], name = '')
 
 trace2 = draw_trace(pred_df['diff_gasolina'], 'Actual')
-trace3 = draw_trace(pred_df['pred_mean'], 'Mean')
-trace4 = draw_trace(pred_df['pred_last_value'], 'last')
+
+
 trace5 = draw_trace(pred_df['pred_MA'], 'MA')
 
-traces = [trace1, trace2, trace3, trace4, trace5]
+traces = [trace1, trace2, trace5]
 fig2 = go.Figure(data=traces)
 fig2.show()
 
-from sklearn.metrics import mean_squared_error
 
-mse_mean = mean_squared_error(pred_df['diff_gasolina'], pred_df['pred_mean'])
-mse_last = mean_squared_error(pred_df['diff_gasolina'], pred_df['pred_last_value'])
-mse_MA = mean_squared_error(pred_df['diff_gasolina'], pred_df['pred_MA'])
+## New
 
-print(mse_mean, mse_last, mse_MA)
+df_ojo = df_diff.copy()
+res.predict()
+
+df_diff
+
+
+from pandas.tseries.offsets import DateOffset
+
+# Creamos dataframe futuro a Null
+pred_date = df.copy()
+pred_date = pred_date.set_index('Fecha')
+pred_date=[pred_date.index[-1]+ DateOffset(months=x)for x in range(0,24)]
+pred_date=pd.DataFrame(index=pred_date[1:],columns=df.columns)
+pred_date
+
+
+len(res.predict())
+
+
+pred_MA
