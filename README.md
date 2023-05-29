@@ -4,8 +4,27 @@
 
 We will be discussing how to extract data with webscraping from the spanish ministry and do a Forecasting with this data
 
+### Seasonal components plot
+![MA(1)](https://user-images.githubusercontent.com/35499750/241797008-7c45b251-17a4-47ae-afce-964cc092a84d.png)
+
+### ACF PLOT
+![ACF PLOT](https://user-images.githubusercontent.com/35499750/241797006-43925cd3-16bb-4c3f-a82b-b09d427e8ce9.png)
+
+### PACF PLOT
+![ACF PLOT](https://user-images.githubusercontent.com/35499750/241797002-3c8ae839-5feb-4460-a36a-d1f1848aabef.png)
+
+### QQPLOT and other plots
+![QQ PLOT](https://user-images.githubusercontent.com/35499750/241796999-8010cb92-07be-490c-b0cf-0e4d7f7230f5.png)
+
 ### First Forecast obtained through MA(1)
-![ma(1)](https://user-images.githubusercontent.com/35499750/234414943-bfbdb998-6417-4877-ac16-6b59f72d691a.png)
+![MA(1)](https://user-images.githubusercontent.com/35499750/241797004-1858edaf-6612-4b9b-8e69-e6de96a7199c.png)
+
+### Second Forecast obtained through AR(2)
+![AR(2)](https://user-images.githubusercontent.com/35499750/241797001-9fb42e8f-8e8e-4d07-a503-05722ea5f08f.png)
+
+### Third Forecast obtained through ARMA(2,2)
+![ARMA(2)](https://user-images.githubusercontent.com/35499750/241796995-5bd68b11-d894-4e30-a1cb-a1ef2f1946ec.png)
+
 
 
 # About me
