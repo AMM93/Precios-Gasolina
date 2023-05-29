@@ -2,7 +2,11 @@
 https://www.youtube.com/watch?v=Ljj1wGFJqPY 
 Añadir un issue, y arrastrar mis fotos de local ahí, mantener la sintaxis de abajo. Pinchar sobre las imagenes en github, copiar la url y listo!
 -->
+# About me
+- :office: I’m currently working on  Liberty Seguros Spain
+- :construction_worker: My personal website https://antmorenomartin.wixsite.com/start
 
+- 📫 Remember how to reach me: ant.moreno.martin@gmail.com
 # Precios-Gasolina
 
 ### Precios Combustible en España and forecasting 
@@ -35,8 +39,4 @@ We will be discussing how to extract data with webscraping from the Spanish mini
 
 
 
-# About me
-- :office: I’m currently working on  Liberty Seguros Spain
-- :construction_worker: My personal website https://antmorenomartin.wixsite.com/start
 
-- 📫 Remember how to reach me: ant.moreno.martin@gmail.com
