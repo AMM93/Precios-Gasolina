@@ -1,8 +1,13 @@
+<!-- Para añadir imágenes:
+https://www.youtube.com/watch?v=Ljj1wGFJqPY 
+Añadir un issue, y arrastrar mis fotos de local ahí, mantener la sintaxis de abajo. Pinchar sobre las imagenes en github, copiar la url y listo!
+-->
+
 # Precios-Gasolina
 
 ### Precios Combustible en España and forecasting 
 
-We will be discussing how to extract data with webscraping from the spanish ministry and do a Forecasting with this data
+We will be discussing how to extract data with webscraping from the Spanish ministry and do a Forecasting with this data. Here I attach the main insights of the work done!
 
 ### Gráfica a predecir
 ![Graphic](https://user-images.githubusercontent.com/35499750/241797009-d2d73a3a-50ab-4e7a-a17a-b09b19360b51.png)
