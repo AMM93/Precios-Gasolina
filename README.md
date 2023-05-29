@@ -4,8 +4,11 @@
 
 We will be discussing how to extract data with webscraping from the spanish ministry and do a Forecasting with this data
 
+### Gráfica a predecir
+![Graphic](https://user-images.githubusercontent.com/35499750/241797009-d2d73a3a-50ab-4e7a-a17a-b09b19360b51.png)
+
 ### Seasonal components plot
-![MA(1)](https://user-images.githubusercontent.com/35499750/241797008-7c45b251-17a4-47ae-afce-964cc092a84d.png)
+![SC(1)](https://user-images.githubusercontent.com/35499750/241797008-7c45b251-17a4-47ae-afce-964cc092a84d.png)
 
 ### ACF PLOT
 ![ACF PLOT](https://user-images.githubusercontent.com/35499750/241797006-43925cd3-16bb-4c3f-a82b-b09d427e8ce9.png)
