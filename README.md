@@ -37,6 +37,9 @@ We will be discussing how to extract data with webscraping from the Spanish mini
 ### Third Forecast obtained through ARMA(2,2)
 ![ARMA(2)](https://user-images.githubusercontent.com/35499750/241796995-5bd68b11-d894-4e30-a1cb-a1ef2f1946ec.png)
 
+### Forth Forecast obtained through ARIMA(2,1,2)
+![ARIMA](https://github.com/AMM93/Precios-Gasolina/assets/35499750/a70ee1da-2dcf-438c-b191-5d64cefd25d8)
+
 
 
 
