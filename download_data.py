@@ -10,17 +10,26 @@ import shutil
 from datetime import date, timedelta
 import os
 
-year = 2014
+year = 2023 # Write an specific year of study or origin date from starting download data
 
-while year>0:
+last_data = True # True in case we want the last data of the actual year
+                 # False in case we want data from an specific year 
 
+
+while year <= 2023:
+                     
     #### To download the last data of this year (it has to be the day before today) ###
-    #yesterday = date.today() - timedelta(days=1)
-    #data = yesterday.strftime('%d/%m/%Y')
+    if last_data == True:
+        
+        yesterday = date.today() - timedelta(days=1)
+        data = yesterday.strftime('%d/%m/%Y')
+
 
     ### To download data for a certain year ###
+    
+    else:
 
-    data = '31/12/' + str(year)
+        data = '31/12/' + str(year)
 
     url = "https://sedeaplicaciones.minetur.gob.es/shpcarburantes/"
     webdriver = scrap(url)
@@ -49,7 +58,7 @@ while year>0:
     
     #os.rename(file,"/Users/amm/Documents/Github/Data/Gasolina/source/Madrid_alcampo_gasolina_98_E5/" + new_file)
     #shutil.move(file, "/Users/amm/Documents/Github/Data/Gasolina/source/Madrid_alcampo_gasolina_98_E5/" + new_file)
-    year-=1
+    year+=1
 
 
 
